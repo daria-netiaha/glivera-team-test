@@ -1,0 +1,124 @@
+// / Mixin for styling form-placeholders
+// / @example scss - Usage
+// /   @include placeholder {
+// /    color: #333;
+// /   }
+
+// /   input[type='text'],
+// /   input[type='tel'],
+// /   input[type='email'] {
+// /     @include placeholder {
+// /      color: red;
+// /     }
+// /   }
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &.placeholder {
+    @content;
+  }
+}
+
+@mixin v-align($va-height: 100%, $va-direction: middle, $va-pseudo: after) {
+  white-space: nowrap;
+  text-align: center;
+
+  &:#{$va-pseudo} {
+    content: '';
+    display: inline-block;
+    vertical-align: $va-direction;
+    width: 0;
+    min-height: $va-height;
+  }
+
+  >* {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: $va-direction;
+  }
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
+  $list: ();
+
+  @each $prop in $properties {
+    $str: #{$prop} #{$duration} #{$easing};
+    $list: join($list, #{$str}, comma);
+  }
+
+  transition: $list;
+}
+
+@mixin overlay($color, $opacity: 1) {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color, $opacity);
+  }
+}
+
+@mixin font-face($font-name, $font-path, $weight, $style) {
+  @font-face {
+    font-family: '#{$font-name}';
+    src: url('../fonts/#{$font-path}.woff') format('woff'),
+    url('../fonts/#{$font-path}.ttf') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@mixin title-size($symbol) {
+
+  @each $media,
+  $titles-size in $title-palette {
+    @if $media==mobile {
+
+      @each $title,
+      $size in $titles-size {
+
+        #{$title},
+        .#{$title} {
+          font-size: $size + px;
+        }
+      }
+    }
+
+    @else {
+      @include media(#{$symbol}#{$media}) {
+
+        @each $title,
+        $size in $titles-size {
+
+          #{$title},
+          .#{$title} {
+            font-size: $size + px;
+          }
+        }
+      }
+    }
+  }
+}

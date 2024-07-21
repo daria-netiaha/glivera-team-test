@@ -1,0 +1,166 @@
+@include title-size('≥');
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+body {
+	color: $base-text-color;
+	background: $base-background-color;
+	font: #{$font-size-base}/#{$line-height-base} $base-font-family;
+	min-width: $base-min-width;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	letter-spacing: -0.01em;
+}
+
+//- HTML5 display-role reset for older browsers
+main,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+iframe {
+	border: none;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: top;
+}
+
+// Typography
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
+.h {
+	font-family: $headings-font-family;
+	font-weight: $headings-font-weight;
+	margin: $headings-margin;
+	color: $headings-color;
+}
+
+p {
+	margin: 0 0 1em;
+}
+
+a {
+	@include animate(color);
+
+	color: $primary;
+	text-decoration: none;
+
+	&:hover {
+		@include media('>=tablet') {
+			color: $base-text-color;
+			text-decoration: none;
+		}
+	}
+}
+
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul {
+	margin-bottom: 20px;
+
+	li {
+		position: relative;
+		margin-bottom: 20px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+// forms
+form,
+fieldset {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+input[type='url'],
+textarea {
+	@include placeholder {
+		color: $light-gray;
+	}
+
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	box-sizing: border-box;
+	border: 1px solid $form-element-border-color;
+	padding: $form-element-padding;
+	background-color: $form-element-background;
+	font-size: 14px;
+	width: 100%;
+	border-radius: 10px;
+	outline: none;
+	box-shadow: none;
+
+	@include media ('>=tablet') {
+		font-size: 18px;
+		padding: 26px;
+	}
+
+	@include media ('>=desktop') {
+		font-size: 22px;
+		padding: 26px 34px;
+	}
+}
+
+input[type="submit"] {
+	border: none;
+}
+
+select {
+	-webkit-border-radius: 0;
+}
+
+textarea {
+	resize: none;
+	vertical-align: top;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='file'],
+input[type='submit'] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	cursor: pointer;
+}

@@ -1,0 +1,123 @@
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+	display: block;
+}
+
+.btn {
+	@include animate(background-color);
+	font: 500 14px/1.2 $base-font-family;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	min-width: 80px;
+	border-radius: 4px;
+	padding: $btn-padding;
+	background-color: $btn-background;
+	border: 1px solid $green;
+	color: $btn-color;
+	text-decoration: none;
+	text-transform: capitalize;
+	display: inline-block;
+	cursor: pointer;
+
+	&:hover {
+		background-color: rgba($green, 0.28);
+	}
+
+	&.btn-danger {
+		color: $red;
+		border-color: $red;
+		background-color: rgba($red, 0.38);
+
+		&:hover {
+			background-color: rgba($red, 0.28);
+		}
+	}
+
+	&.btn-light {
+		color: $black;
+		border-color: $light-gray;
+		background-color: #f5f5f5;
+
+		&:hover {
+			background-color: $light-gray;
+		}
+
+		&.active {
+			background-color: $primary;
+			border-color: $primary;
+			color: $white;
+
+			&:hover {
+				background-color: rgba($primary, 0.9);
+			}
+		}
+	}
+}
+
+.mobile-hidden {
+	@include media('<=tablet') {
+		display: none !important;
+	}
+}
+
+.tablet-hidden {
+	@include media('<tablet') {
+		display: none !important;
+	}
+}
+
+.desktop-hidden {
+	@include media('>=tablet') {
+		display: none !important;
+	}
+}
+
+.text-center {
+	text-align: center;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+input[type='url'] {
+	background: none;
+	border: none;
+	border-bottom: 1px solid rgba($white, 0.6);
+	color: rgba($white, 0.6);
+	border-radius: 0;
+	font: 400 16px/20px $base-font-family;
+	padding: 19px 0;
+	outline: none;
+
+	&:focus {
+		@include placeholder {
+			opacity: 0;
+			transform: translatex(10px);
+		}
+	}
+
+	@include placeholder {
+		transition: 0.3s;
+	}
+}
+
+
+input {
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:hover,
+	&:-webkit-autofill:focus,
+	&:-webkit-autofill:active {
+		-webkit-box-shadow: 0 0 0 30px $black inset !important;
+	}
+
+	&:-webkit-autofill {
+		-webkit-text-fill-color: $white !important;
+	}
+}
